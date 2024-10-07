@@ -2,7 +2,11 @@
 package iitu.edu.kz.repository;
 
 import iitu.edu.kz.model.News;
+import iitu.edu.kz.model.Author;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +14,47 @@ import java.util.Optional;
 
 public class NewsRepository {
     private List<News> newsList = new ArrayList<>();
+    private List<Author> authorList = new ArrayList<>();
     private Long currentId = 1L;
+
+    // File paths for data sources
+    private final String AUTHOR_FILE_PATH = "module-repository/src/main/resources/data/author.txt";
+    private final String NEWS_FILE_PATH = "module-repository/src/main/resources/data/news.txt";
 
     // Initializing with default data (could be loaded from files)
     public NewsRepository() {
-        // Pre-fill with default data as per specification
-        newsList.add(new News(currentId++, "Sample Title 1", "Sample Content 1", 1L, LocalDateTime.now(), LocalDateTime.now()));
-        newsList.add(new News(currentId++, "Sample Title 2", "Sample Content 2", 2L, LocalDateTime.now(), LocalDateTime.now()));
+        loadDataFromFiles();
+
+        // Setup a file watcher to auto-update data when files change
+        FileWatcher fileWatcher = new FileWatcher("module-repository/src/main/resources/data", this::loadDataFromFiles);
+        fileWatcher.startWatching();
+    }
+    // Loads data from files and updates in-memory collections
+    private void loadDataFromFiles() {
+        try {
+            // Load authors from file
+            authorList.clear();
+            Files.lines(Paths.get(AUTHOR_FILE_PATH)).forEach(line -> {
+                String[] parts = line.split(",");
+                authorList.add(new Author(Long.parseLong(parts[0]), parts[1]));
+            });
+
+            // Load news articles from file
+            newsList.clear();
+            Files.lines(Paths.get(NEWS_FILE_PATH)).forEach(line -> {
+                String[] parts = line.split(",");
+                Long id = Long.parseLong(parts[0]);
+                String title = parts[1];
+                String content = parts[2];
+                Long authorId = Long.parseLong(parts[3]);
+                newsList.add(new News(id, title, content, authorId, LocalDateTime.now(), LocalDateTime.now()));
+            });
+
+            System.out.println("Data loaded from files successfully!");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // CRUD Operations
