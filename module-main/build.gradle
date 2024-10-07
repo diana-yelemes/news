@@ -9,5 +9,5 @@ dependencies {
 }
 
 application {
-    mainClass = 'iitu.edu.kz.main.MainApp'
+    mainClass = 'iitu.edu.kz.MainApplication'
 }

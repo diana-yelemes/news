@@ -1,7 +1,7 @@
 // news-management/build.gradle
 buildscript {
     ext {
-        springBootVersion = '3.3.4' // Ensure you are using the correct Spring Boot version here.
+        springBootVersion = '3.3.4'
     }
     repositories {
         mavenCentral()
@@ -19,6 +19,7 @@ plugins {
 allprojects {
     group = 'iitu.edu.kz'
     version = '1.0.0'
+
 
     repositories {
         mavenCentral()
@@ -66,6 +67,6 @@ project(':module-main') {
     apply plugin: 'io.spring.dependency-management'
 
     bootJar {
-        mainClass = 'iitu.edu.kz.MainApplication'  // Updated from 'mainClassName' to 'mainClass'
+        mainClass = 'iitu.edu.kz.MainApplication'
     }
 }

@@ -39,14 +39,15 @@ public class NewsController {
 
     // Update News
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<NewsDTO>> updateNews(@PathVariable Long id, @RequestBody NewsDTO newsDTO) {
+    public ResponseEntity<ApiResponse<NewsDTO>> updateNews(@PathVariable("id") Long id, @RequestBody NewsDTO newsDTO) {
         NewsDTO updatedNews = newsService.updateNews(id, newsDTO);
         return new ResponseEntity<>(new ApiResponse<>(updatedNews, "News updated successfully."), HttpStatus.OK);
     }
 
+
     // Delete News
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<Boolean>> deleteNews(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse<Boolean>> deleteNews(@PathVariable("id") Long id) {
         boolean isDeleted = newsService.deleteNews(id);
         return new ResponseEntity<>(new ApiResponse<>(isDeleted, "News deleted successfully."), HttpStatus.OK);
     }
