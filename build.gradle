@@ -1,0 +1,71 @@
+// news-management/build.gradle
+buildscript {
+    ext {
+        springBootVersion = '3.3.4' // Ensure you are using the correct Spring Boot version here.
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:3.3.4")
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '3.3.4' apply false
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE' apply false
+}
+
+allprojects {
+    group = 'iitu.edu.kz'
+    version = '1.0.0'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+project(':module-repository') {
+    dependencies {
+        // No additional dependencies required for this module.
+    }
+}
+
+project(':module-service') {
+    dependencies {
+        implementation project(':module-repository')
+        implementation 'org.mapstruct:mapstruct:1.5.3.Final' // Optional mapping library
+    }
+}
+
+project(':module-web') {
+    dependencies {
+        implementation project(':module-service')
+        implementation "org.springframework.boot:spring-boot-starter-web:3.3.4"
+        implementation "org.springframework.boot:spring-boot-starter-validation:3.3.4"
+    }
+}
+
+project(':module-main') {
+    dependencies {
+        implementation project(':module-web')
+        implementation "org.springframework.boot:spring-boot-starter:3.3.4"
+    }
+
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    bootJar {
+        mainClass = 'iitu.edu.kz.MainApplication'  // Updated from 'mainClassName' to 'mainClass'
+    }
+}
