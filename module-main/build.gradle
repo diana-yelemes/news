@@ -3,9 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation project(':module-web')
-    implementation project(':module-service')
-    implementation project(':module-repository')
+
 }
 
 application {
