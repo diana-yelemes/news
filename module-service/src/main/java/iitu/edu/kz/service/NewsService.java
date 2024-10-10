@@ -88,7 +88,7 @@ public class NewsService {
         );
     }
 
-    // Mapping from DTO to Model (if needed)
+    // Mapping from DTO to Model
     private News mapToModel(NewsDTO newsDTO) {
         return new News(
                 newsDTO.getId(),

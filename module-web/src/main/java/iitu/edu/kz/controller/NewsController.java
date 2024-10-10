@@ -32,7 +32,7 @@ public class NewsController {
 
     // Get News by ID
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<NewsDTO>> getNewsById(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse<NewsDTO>> getNewsById(@PathVariable("id") Long id) {
         NewsDTO news = newsService.getNewsById(id);
         return new ResponseEntity<>(new ApiResponse<>(news, "News fetched successfully."), HttpStatus.OK);
     }
