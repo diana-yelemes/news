@@ -1,5 +1,5 @@
 1,AI in court,President Kassym-Jomart Tokayev has proposed optimizing Kazakhstan's court system with the help of artificial intelligence.,4
-2,Kazakhstan Trade,Kazakh Deputy Foreign Minister Alibek Kuantyrov discussed expanding strategic cooperation with the United States, particularly in trade, economic, and investment sectors,1
+2,Kazakhstan Trade,Kazakh Deputy Foreign Minister Alibek Kuantyrov discussed expanding strategic cooperation with the United States.,1
 3,Manufacturing,Kazakhstan’s manufacturing industry recorded a production volume of 14.9 trillion tenge,2
-4,Aral Sea,For the first time in five years, Kazakhstan has nearly fulfilled its water delivery target to the Aral Sea during the irrigation season, supplying 977 million cubic meters of water.,2
-5,Kazakhstan, Netherlands,Kazakhstan and the Netherlands convened the first Kazakh-Dutch Business Council on Oct. 9.,2
+4,Aral Sea,For the first time in five years Kazakhstan has nearly fulfilled its water delivery target to the Aral Sea during the irrigation season supplying 977 million cubic meters of water.,2
+5,Kazakhstan and Netherlands,Kazakhstan and the Netherlands convened the first Kazakh-Dutch Business Council on Oct. 9.,2
